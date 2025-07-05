@@ -24,3 +24,17 @@ apply(is.na(gpu_clean),2,sum)
 apply(is.na(gpu_clean),2,mean)
 
 
+gpu_clean <- gpu_clean %>% 
+  filter(!is.na(Memory_Speed), 
+         !is.na(Memory_Bandwidth), 
+         !is.na(Memory_Bus))
+
+cols_median_fill <- c("Core_Speed", "Process", "Max_Power", "TMUs", "Memory")
+
+for (col in cols_median_fill) {
+  median_value <- median(gpu_clean[[col]], na.rm = TRUE)
+  gpu_clean[[col]][is.na(gpu_clean[[col]])] <- median_value
+}
+
+apply(is.na(gpu_clean),2,sum)
+apply(is.na(gpu_clean),2,mean)
