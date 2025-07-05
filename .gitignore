@@ -1,0 +1,9 @@
+.Rhistory
+.RData
+.Rproj.user
+temp/
+tmp/
+*.RData
+*.bak
+.httr-oauth
+credentials.txt
