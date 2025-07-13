@@ -18,7 +18,7 @@ gpu_clean$Memory_Bus <- as.numeric(str_remove(gpu_clean$Memory_Bus, " Bit"))
 gpu_clean$Process <- as.numeric(str_remove(gpu_clean$Process, "nm"))
 gpu_clean$Memory <- as.numeric(str_remove(gpu_clean$Memory, " MB"))
 
-summary(gpu_clean)
+View(gpu_clean)
 
 
 apply(is.na(gpu_clean),2,sum)
@@ -40,4 +40,5 @@ for (col in cols_median_fill) {
 apply(is.na(gpu_clean),2,sum)
 apply(is.na(gpu_clean),2,mean)
 
+# View(gpu_clean)
 # PHAN 4 Thong ke ta
