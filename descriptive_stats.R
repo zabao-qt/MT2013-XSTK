@@ -1,5 +1,6 @@
 library(dplyr)
 library(stringr)
+library(ggplot2)
 
 # PHAN 3 tien xu ly so lieu
 data<-read.csv("All_GPUs.csv")
@@ -18,7 +19,7 @@ gpu_clean$Memory_Bus <- as.numeric(str_remove(gpu_clean$Memory_Bus, " Bit"))
 gpu_clean$Process <- as.numeric(str_remove(gpu_clean$Process, "nm"))
 gpu_clean$Memory <- as.numeric(str_remove(gpu_clean$Memory, " MB"))
 
-View(gpu_clean)
+head(gpu_clean)
 
 
 apply(is.na(gpu_clean),2,sum)
@@ -42,3 +43,21 @@ apply(is.na(gpu_clean),2,mean)
 
 # View(gpu_clean)
 # PHAN 4 Thong ke ta
+barplot(
+  table(gpu_clean$Manufacturer),
+  xlab = "Manufacturer",
+  ylab = "Frequency",
+  main = "Bar Plot of GPU Manufacturer",
+  col = "steelblue",
+  border = "black"
+)
+
+boxplot(Max_Power ~ Manufacturer,
+        data = gpu_clean,
+        xlab = "Manufacturer",
+        ylab = "Max_Power",
+        main = "Manufacturer vs TMUs",
+        pch = 20,
+        cex = 1.5,
+        col = "lightgreen",
+        border = "black")
