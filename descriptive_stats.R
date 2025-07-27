@@ -31,9 +31,11 @@ chart <- barplot(table(qualitative_data$Manufacturer),
     border = "black"
 )
 
+pdf("ggplots.pdf", width = 8, height = 6)
 ### Biểu đồ biến định lượng
 # Histogram of Core Speed
 chart <- hist(gpu_clean$Core_Speed,
+    breaks = 20,
     main = "Core Speed Histogram",
     xlab = "Core Speed (MHz)",
     ylab = "Frequency",
@@ -46,6 +48,7 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of Memory
 chart <- hist(gpu_clean$Memory,
+    breaks = 20,
     main = "Memory Histogram",
     xlab = "Memory (MB)",
     ylab = "Frequency",
@@ -58,6 +61,7 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of Memory Bandwidth
 chart <- hist(gpu_clean$Memory_Bandwidth,
+              breaks = 20,
               main = "Memory Bandwidth Histogram",
               xlab = "Memory Bandwidth (GB/sec)",
               ylab = "Frequency",
@@ -70,6 +74,7 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of Memory_Speed
 chart <- hist(gpu_clean$Memory_Speed,
+              breaks = 20,
               main = "Memory Speed Histogram",
               xlab = "Memory Speed (MHz)",
               ylab = "Frequency",
@@ -82,6 +87,7 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of Memory_Bus
 chart <- hist(gpu_clean$Memory_Bus,
+              breaks = 20,
               main = "Memory Bus Histogram",
               xlab = "Memory Bus (Bit)",
               ylab = "Frequency",
@@ -94,10 +100,11 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of Process
 chart <- hist(gpu_clean$Process,
+              breaks = 20,
               main = "Process Histogram",
               xlab = "Process (nm)",
               ylab = "Frequency",
-              xlim = c(0, 200),
+              xlim = c(0, 150),
               ylim = c(0, 2000),
               col = "gray",
               border = "black"
@@ -106,6 +113,7 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of Max Power
 chart <- hist(gpu_clean$Max_Power,
+              breaks = 20,
               main = "Max Power Histogram",
               xlab = "Max Power (Watts)",
               ylab = "Frequency",
@@ -118,11 +126,12 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of TMUs
 chart <- hist(gpu_clean$TMUs,
+              breaks = 20,
               main = "TMUs Histogram",
               xlab = "TMUs",
               ylab = "Frequency",
-              xlim = c(0, 500),
-              ylim = c(0, 1500),
+              xlim = c(0, 400),
+              ylim = c(0, 1000),
               col = "gray",
               border = "black"
 )
@@ -130,6 +139,7 @@ text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8
 
 # Histogram of ROPs
 chart <- hist(gpu_clean$ROPs,
+              breaks = 20,
               main = "ROPs Histogram",
               xlab = "ROPs",
               ylab = "Frequency",
@@ -139,3 +149,26 @@ chart <- hist(gpu_clean$ROPs,
               border = "black"
 )
 text(x = chart$mids, y = chart$counts, labels = chart$counts, pos = 3, cex = 0.8, col = "black")
+
+# Biểu đồ Scatter plots
+pairs(quantitative_data, main = "Pairs Plot of Numeric Data", pch = 16)
+
+### Biểu đồ tương quan giữa 2 biến
+# Biểu đồ Process vs Max Power
+plot(Max_Power ~ Process, gpu_clean,
+     xlab = "Process (nm)",
+     ylab = "Max Power (Watts)",
+     main = "Process vs Max Power",
+     col = "black",
+     pch = 16
+)
+
+# Biểu đồ Process vs Core Speed
+plot(Core_Speed ~ Process, gpu_clean,
+     xlab = "Process (nm)",
+     ylab = "Core_Speed (MHz)",
+     main = "Process vs Core_Speed",
+     col = "black",
+     pch = 16
+)
+dev.off()
