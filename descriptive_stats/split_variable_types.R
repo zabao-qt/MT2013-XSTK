@@ -1,0 +1,2 @@
+qualitative_data  <- gpu_clean[, c("Manufacturer"), drop = FALSE]
+quantitative_data <- gpu_clean[, c("Core_Speed", "Memory", "Memory_Bandwidth", "Memory_Speed", "Memory_Bus", "Process", "Max_Power", "TMUs", "ROPs"), drop = FALSE]
