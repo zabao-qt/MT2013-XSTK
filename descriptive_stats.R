@@ -11,7 +11,7 @@ source("data_preprocessing.R")                              # Làm sạch dữ l
 source("descriptive_stats/split_variable_types.R")          # Chia dữ liệu dưới dạng định lượng, định tính
 
 # ==== CÁC ĐẶC TRƯNG CỦA MẪU ==== #
-source("descriptive_stats/data_summary.R")
+summary(gpu_clean)
 
 pdf("ggplots.pdf", width = 8, height = 6)                   # Vẽ biểu đồ trong thành file pdf
 # ==== DỮ LIỆU ĐỊNH TÍNH ==== #

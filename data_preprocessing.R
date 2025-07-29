@@ -1,3 +1,6 @@
+library(dplyr)
+library(stringr)
+
 data <- read.csv("All_GPUs.csv")
 head(data, 10)
 View(data)
