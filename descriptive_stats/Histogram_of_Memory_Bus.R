@@ -18,4 +18,4 @@ text(x = hist_data$mids, y = hist_data$counts + 50, labels = hist_data$counts, c
 # Vẽ lại trục X
 axis(side = 1, at = seq(32, 8192, by = 544), labels = seq(32, 8192, by = 544), cex.axis = 0.6)
 # Vẽ lại trục Y
-axis(side = 2, at = seq(0, 3300, by = 300), labels = seq(0, 3300, by = 300), cex.axis = 0.8)
+axis(side = 2, at = seq(0, 3300, by = 300), labels = seq(0, 3300, by = 300), cex.axis = 0.9)
