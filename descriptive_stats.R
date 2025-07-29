@@ -29,12 +29,40 @@ source("descriptive_stats/Histogram_of_TMUs.R")             # Histogram of TMUs
 source("descriptive_stats/Histogram_of_ROPs.R")             # Histogram of ROPs
 
 # ==== BIỂU ĐỒ TƯƠNG QUAN GIỮA CÁC CẶP DỮ LIỆU ĐỊNH LƯỢNG ==== #
-pairs(quantitative_data, main = "Pairs Plot of Numeric Data", pch = 20, col = "black") # Biểu đồ Scatter plots
+pairs(quantitative_data, main = "Pairs Plot of Numeric Data") # Biểu đồ Scatter plots
 
-### Biểu đồ tương quan giữa 2 biến
-source("descriptive_stats/Plot_Process_vs_Max_Power.R")     # Biểu đồ Process vs Max Power
-source("descriptive_stats/Plot_Process_vs_Core_Speed.R")    # Biểu đồ Process vs Core Speed
-source("descriptive_stats/Memory_Bandwidth_vs_ROPs.R")    # Biểu đồ Memory Bandwidth vs ROPs
+### Biểu đồ tương quan giữa 2 biến + regression line
+plot(Memory_Bandwidth ~ Max_Power, gpu_clean,
+     main = "Max Power vs Memory Bandwidth",
+     xlab = "Max Power",
+     ylab = "Memory Bandwidth",
+     pch = 19, col = "blue")
+fit <- lm(Memory_Bandwidth ~ Max_Power, gpu_clean)
+abline(fit, col = "darkblue")
+
+plot(Memory_Speed ~ Core_Speed, gpu_clean,
+     main = "Core Speed vs Memory Speed",
+     xlab = "Core Speed",
+     ylab = "Memory Speed",
+     pch = 19, col = "red")
+fit <- lm(Memory_Speed ~ Core_Speed, gpu_clean)
+abline(fit, col = "darkred")
+
+plot(TMUs ~ Memory_Bandwidth, gpu_clean,
+     main = "Memory Bandwidth vs TMUs",
+     xlab = "Memory Bandwidth",
+     ylab = "TMUs",
+     pch = 19, col = "magenta")
+fit <- lm(TMUs ~ Memory_Bandwidth, gpu_clean)
+abline(fit, col = "darkmagenta")
+
+plot(ROPs ~ Memory_Bandwidth, gpu_clean,
+     main = "Memory Bandwidth vs ROPs",
+     xlab = "Memory Bandwidth",
+     ylab = "ROPs",
+     pch = 19, col = "orange")
+fit <- lm(ROPs ~ Memory_Bandwidth, gpu_clean)
+abline(fit, col = "darkorange")
 
 dev.off() # Đóng file pdf
 
