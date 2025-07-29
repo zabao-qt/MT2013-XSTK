@@ -1,35 +1,21 @@
+# Vẽ biểu đồ
 hist_data <- hist(
   gpu_clean$Memory_Speed,
-  breaks = seq(0, 2200, by = 220),  # mỗi cột rộng 100 GB/s
-  main = "Memory Speed Histogram",
-  xlab = "Memory Speed (MHz)",
-  ylab = "Amount",
-  xlim = c(0, 2200),
-  ylim = c(0, 1000),
+  breaks = seq(100, 2200, by = 150),
+  main = "Histogram of Memory Speed",
+  xlab = "Memory_Speed (MHz)",
+  ylab = "Frequency",
+  xlim = c(100, 2200),
+  ylim = c(0, 500),
   col = "skyblue",
   border = "black",
-  xaxt = "n",
-  yaxt = "n"
+  xaxt = "n",  # tắt trục X mặc định
+  yaxt = "n"   # tắt trục Y mặc định
 )
 
-# Trục X cách 200
-axis(side = 1,
-  at = seq(0, 2200, by = 220),
-  labels = seq(0, 2200, by = 220),
-  cex.axis = 0.8
-)
-
-# Trục Y cách 500
-axis(side = 2,
-  at = seq(0, 1000, by = 200),
-  labels = seq(0, 1000, by = 200),
-  cex.axis = 0.8
-)
-
-# Ghi số lượng lên đỉnh cột
-text(
-  x = hist_data$mids,
-  y = hist_data$counts + 30,
-  labels = hist_data$counts,
-  cex = 0.7
-)
+# Hiển thị số lượng trên đỉnh các cột
+text(x = hist_data$mids, y = hist_data$counts + 30, labels = hist_data$counts, cex = 0.6)
+# Vẽ lại trục X
+axis(side = 1, at = seq(100, 2200, by = 150), labels = seq(100, 2200, by = 150), cex.axis = 0.6)
+# Vẽ lại trục Y
+axis(side = 2, at = seq(0, 500, by = 100), labels = seq(0, 500, by = 100), cex.axis = 0.8)

@@ -1,35 +1,21 @@
+# Vẽ biểu đồ
 hist_data <- hist(
   gpu_clean$Memory_Bus,
-  breaks = seq(0, 9000, by = 1000),  # mỗi cột rộng 100 GB/s
-  main = "Memory Bus Histogram",
-  xlab = "Memory Bus (Bit)",
-  ylab = "Amount",
-  xlim = c(0, 9000),
-  ylim = c(0, 4000),
+  breaks = seq(32, 8192, by = 544),
+  main = "Histogram of Memory Bus",
+  xlab = "Memory_Bus (Bit)",
+  ylab = "Frequency",
+  xlim = c(32, 8192),
+  ylim = c(0, 3300),
   col = "skyblue",
   border = "black",
-  xaxt = "n",
-  yaxt = "n"
+  xaxt = "n",  # tắt trục X mặc định
+  yaxt = "n"   # tắt trục Y mặc định
 )
 
-# Trục X cách 200
-axis(side = 1,
-  at = seq(0, 9000, by = 1000),
-  labels = seq(0, 9000, by = 1000),
-  cex.axis = 0.8
-)
-
-# Trục Y cách 500
-axis(side = 2,
-  at = seq(0, 4000, by = 1000),
-  labels = seq(0, 4000, by = 1000),
-  cex.axis = 0.8
-)
-
-# Ghi số lượng lên đỉnh cột
-text(
-  x = hist_data$mids,
-  y = hist_data$counts + 50,
-  labels = hist_data$counts,
-  cex = 0.7
-)
+# Hiển thị số lượng trên đỉnh các cột
+text(x = hist_data$mids, y = hist_data$counts + 50, labels = hist_data$counts, cex = 0.6)
+# Vẽ lại trục X
+axis(side = 1, at = seq(32, 8192, by = 544), labels = seq(32, 8192, by = 544), cex.axis = 0.6)
+# Vẽ lại trục Y
+axis(side = 2, at = seq(0, 3300, by = 300), labels = seq(0, 3300, by = 300), cex.axis = 0.8)
