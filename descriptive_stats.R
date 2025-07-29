@@ -19,6 +19,7 @@ source("descriptive_stats/Bar_Plot_of_GPU_Manufacturer.R")  # Bar Plot of GPU Ma
 
 # ==== DỮ LIỆU ĐỊNH LƯỢNG ==== #
 source("descriptive_stats/Histogram_of_Core_Speed.R")       # Histogram of Core Speed
+source("descriptive_stats/Histogram_of_Memory.R")           # Histogram of Memory Bandwidth
 source("descriptive_stats/Histogram_of_Memory_Bandwidth.R") # Histogram of Memory Bandwidth
 source("descriptive_stats/Histogram_of_Memory_Speed.R")     # Histogram of Memory_Speed
 source("descriptive_stats/Histogram_of_Memory_Bus.R")       # Histogram of Memory_Bus
@@ -28,11 +29,12 @@ source("descriptive_stats/Histogram_of_TMUs.R")             # Histogram of TMUs
 source("descriptive_stats/Histogram_of_ROPs.R")             # Histogram of ROPs
 
 # ==== BIỂU ĐỒ TƯƠNG QUAN GIỮA CÁC CẶP DỮ LIỆU ĐỊNH LƯỢNG ==== #
-pairs(quantitative_data, main = "Pairs Plot of Numeric Data", pch = 16, col = "blue") # Biểu đồ Scatter plots
+pairs(quantitative_data, main = "Pairs Plot of Numeric Data", pch = 20, col = "black") # Biểu đồ Scatter plots
 
 ### Biểu đồ tương quan giữa 2 biến
 source("descriptive_stats/Plot_Process_vs_Max_Power.R")     # Biểu đồ Process vs Max Power
 source("descriptive_stats/Plot_Process_vs_Core_Speed.R")    # Biểu đồ Process vs Core Speed
+source("descriptive_stats/Memory_Bandwidth_vs_ROPs.R")    # Biểu đồ Memory Bandwidth vs ROPs
 
 dev.off() # Đóng file pdf
 

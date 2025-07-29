@@ -1,8 +1,8 @@
 hist_data <- hist(
   gpu_clean$Max_Power,
   breaks = seq(0, 800, by = 100),  # mỗi cột rộng 100 GB/s
-  main = "Process Histogram",
-  xlab = "Process (nm)",
+  main = "Max Power Histogram",
+  xlab = "Max Power (Watts)",
   ylab = "Amount",
   xlim = c(0, 800),
   ylim = c(0, 2000),
