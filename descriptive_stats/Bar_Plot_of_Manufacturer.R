@@ -1,5 +1,5 @@
 counts <- table(gpu_clean$Manufacturer)
-bar_positions <- barplot(
+manufacturer_bar_positions <- barplot(
   table(gpu_clean$Manufacturer),
   xlab = "Manufacturer",
   ylab = "Amount",
@@ -9,7 +9,7 @@ bar_positions <- barplot(
   border = "black"
 )
 text(
-  x = bar_positions,
+  x = manufacturer_bar_positions,
   y = counts,
   labels = counts,
   pos = 3,          # vị trí phía trên cột

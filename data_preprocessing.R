@@ -5,7 +5,7 @@ data <- read.csv("All_GPUs.csv")
 head(data, 10)
 View(data)
 
-gpu <- data[, c("Core_Speed", "Manufacturer", "Memory", "Memory_Bandwidth", "Memory_Speed", "Memory_Bus", "Process", "Max_Power", "TMUs", "ROPs")]
+gpu <- data[, c("Core_Speed", "Manufacturer", "Memory_Type", "Memory", "Memory_Bandwidth", "Memory_Speed", "Memory_Bus", "Process", "Max_Power", "TMUs", "ROPs")]
 head(gpu, 10)
 View(gpu)
 
@@ -23,9 +23,10 @@ gpu_clean$ROPs <- ifelse(
   as.numeric(str_extract(gpu_clean$ROPs, "\\d+")) * 2,
   as.numeric(str_extract(gpu_clean$ROPs, "\\d+"))
 )
+gpu_clean$Memory_Type <- ifelse(str_trim(gpu_clean$Memory_Type) == "", NA, gpu_clean$Memory_Type)
+
 
 summary(gpu_clean)
-
 
 apply(is.na(gpu_clean), 2, sum)
 apply(is.na(gpu_clean), 2, mean)
@@ -34,7 +35,8 @@ apply(is.na(gpu_clean), 2, mean)
 gpu_clean <- gpu_clean %>%
   filter(!is.na(Memory_Speed),
          !is.na(Memory_Bandwidth),
-         !is.na(Memory_Bus))
+         !is.na(Memory_Bus),
+         !is.na(Memory_Type))
 
 gpu_clean$Core_Speed[is.na(gpu_clean$Core_Speed)] <- median(gpu_clean$Core_Speed, na.rm = TRUE)
 gpu_clean$Process[is.na(gpu_clean$Process)] <- median(gpu_clean$Process, na.rm = TRUE)

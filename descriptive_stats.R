@@ -15,7 +15,8 @@ summary(gpu_clean)
 
 pdf("ggplots.pdf", width = 8, height = 6)                   # Vẽ biểu đồ trong thành file pdf
 # ==== DỮ LIỆU ĐỊNH TÍNH ==== #
-source("descriptive_stats/Bar_Plot_of_GPU_Manufacturer.R")  # Bar Plot of GPU Manufacturer
+source("descriptive_stats/Bar_Plot_of_Manufacturer.R")  # Bar Plot of GPU Manufacturer
+source("descriptive_stats/Bar_Plot_of_Memory_Type.R")
 
 # ==== DỮ LIỆU ĐỊNH LƯỢNG ==== #
 source("descriptive_stats/Histogram_of_Core_Speed.R")       # Histogram of Core Speed
