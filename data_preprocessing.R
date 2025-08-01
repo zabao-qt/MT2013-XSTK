@@ -1,7 +1,7 @@
 library(dplyr)
 library(stringr)
 
-data <- read.csv("All_GPUs.csv")
+data <- read.csv("c:/project/MT2013-XSTK/All_GPUs.csv")
 head(data, 10)
 View(data)
 
