@@ -14,12 +14,11 @@ source("c:/project/MT2013-XSTK/data_preprocessing.R")
 # BƯỚC 1: CHUẨN BỊ DỮ LIỆU
 # ==========================================
 
-# Lọc dữ liệu Nvidia và AMD, loại bỏ giá trị NA
 nvidia_GPU <- gpu_clean %>%
-  filter(Manufacturer == "Nvidia", !is.na(Memory_Bandwidth))
+  filter(Manufacturer == "Nvidia")
 
 amd_GPU <- gpu_clean %>%
-  filter(Manufacturer == "AMD", !is.na(Memory_Bandwidth))
+  filter(Manufacturer == "AMD")
 
 # Trích xuất Memory_Bandwidth cho từng nhóm
 nvidia_memory_bandwidth <- nvidia_GPU$Memory_Bandwidth
@@ -34,16 +33,10 @@ cat("Số lượng GPU AMD:", length(amd_memory_bandwidth), "\n")
 
 cat("\n=== THỐNG KÊ MÔ TẢ ===\n")
 cat("Nvidia Memory Bandwidth:\n")
-cat("  Mean:", mean(nvidia_memory_bandwidth), "\n")
-cat("  SD:", sd(nvidia_memory_bandwidth), "\n")
-cat("  Min:", min(nvidia_memory_bandwidth), "\n")
-cat("  Max:", max(nvidia_memory_bandwidth), "\n")
+summary(nvidia_memory_bandwidth)
 
 cat("\nAMD Memory Bandwidth:\n")
-cat("  Mean:", mean(amd_memory_bandwidth), "\n")
-cat("  SD:", sd(amd_memory_bandwidth), "\n")
-cat("  Min:", min(amd_memory_bandwidth), "\n")
-cat("  Max:", max(amd_memory_bandwidth), "\n")
+summary(amd_memory_bandwidth)
 
 # ==========================================
 # PHÂN TÍCH OUTLIERS CHI TIẾT
@@ -109,7 +102,6 @@ if(length(nvidia_outliers$outliers) > 0 && length(amd_outliers$outliers) > 0) {
 cat("\n=== KIỂM TRA PHÂN PHỐI CHUẨN ===\n")
 
 # Reset plot layout trước khi vẽ
-dev.off()  # Clear any existing plots
 par(mfrow = c(1, 1))  # Reset to single plot
 
 # Q-Q Plot cho Nvidia
