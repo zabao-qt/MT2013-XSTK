@@ -35,7 +35,7 @@ cat("\n---- Normality check (QQ + Shapiro) by Manufacturer ----\n")
 for (m in manufacturers) {
             # Subset data cho từng manufacturer
             subset_data <- gpu_clean[gpu_clean$Manufacturer == m, "Memory_Bandwidth"]
-            if (length(sub) < 3) next
+            if (length(subset_data) < 3) next
             # Plot QQ plot
             qqnorm(subset_data, main = paste("QQ Plot of Memory_Bandwidth -", m))
             qqline(subset_data, , col = "blue", lwd = 2)
