@@ -3,11 +3,11 @@ library(stringr)
 
 data <- read.csv("All_GPUs.csv")
 head(data, 10)
-View(data)
+# View(data)
 
 gpu <- data[, c("Core_Speed", "Manufacturer", "Memory_Type", "Memory", "Memory_Bandwidth", "Memory_Speed", "Memory_Bus", "Process", "Max_Power", "TMUs", "ROPs")]
 head(gpu, 10)
-View(gpu)
+# View(gpu)
 
 gpu_clean <- gpu
 
@@ -48,4 +48,4 @@ gpu_clean$ROPs[is.na(gpu_clean$ROPs)] <- median(gpu_clean$ROPs, na.rm = TRUE)
 
 apply(is.na(gpu_clean), 2, sum)
 apply(is.na(gpu_clean), 2, mean)
-View(gpu_clean)
+# View(gpu_clean)
