@@ -21,3 +21,11 @@ print(data.frame(n = n, mean = xtb, sd = sd))
 # Miền bác bỏ RR
 z_alpha <- qnorm(0.975)
 z_qs    <- (xtb - 1200)*sqrt(n)/sd 
+cat("z < -", round(z_alpha, 2), "hoặc z >", round(z_alpha, 2), "\n")
+cat("Giá trị z_qs:", round(z_qs, 4), "\n")
+
+if (z_qs < -z_alpha || z_qs > z_alpha) {
+  cat("BÁC BỎ H0\n")
+} else {
+  cat("KHÔNG BÁC BỎ H0: Không có đủ bằng chứng thống kê\n")
+}
